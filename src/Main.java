@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import Vaisseau.*;
 import Objets.*;
@@ -51,7 +52,7 @@ public class Main {
     public static boolean explorer(Vaisseau unit) {
         Planete rndPlanete = listePlanetes[(int) (Math.random()*5)];
 
-        while (!unit.getPlanetesVisitees().peek().getClass().equals(rndPlanete.getClass()))
+        while (unit.getPlanetesVisitees().peek().getClass().equals(rndPlanete.getClass()))
             rndPlanete = listePlanetes[(int) (Math.random()*5)];
 
         if (unit.getQteCarburant() - rndPlanete.getCarburantPourArriver() < 0) {
@@ -81,7 +82,9 @@ public class Main {
                 System.out.println(" " + i + "- " + objet.getNom());
             }
 
+            System.out.print("Choix: ");
             entree = sc.nextInt() - 1;
+            System.out.println();
             unit.getInventaire().get(entree).utiliser(unit);
             unit.getInventaire().remove(entree);
         }
@@ -99,6 +102,19 @@ public class Main {
 
     public static boolean finPartie(Vaisseau unit) {
         System.out.println("Fin de la partie");
+
+        ArrayList<Planete> planetesParcourues = new ArrayList<>();
+
+        while (!unit.getPlanetesVisitees().isEmpty())
+            planetesParcourues.add(unit.getPlanetesVisitees().pop());
+
+        System.out.println("Trajet parcouru: ");
+
+        for (int i = 0; i < planetesParcourues.size(); i++) {
+            System.out.print(planetesParcourues.get(i).getNom());
+            if (!(i == planetesParcourues.size() - 1))
+                System.out.print(" => ");
+        }
 
         return false;
     }

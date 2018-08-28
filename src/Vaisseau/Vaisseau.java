@@ -16,7 +16,7 @@ public class Vaisseau {
         this.qteCarburant = qteCarburant;
         this.pointsDeVie = pointsDeVie;
 
-        planetesVisitees.push(new Terre());
+        planetesVisitees.add(new Terre());
     }
 
     public int getQteCarburant() {
