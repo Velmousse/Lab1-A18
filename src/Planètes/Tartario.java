@@ -20,12 +20,14 @@ public class Tartario extends Planete {
             System.out.println("Une mouche atterrit sur votre pare-brise\n" +
                     "Votre vaisseau perd 10 points de vie");
 
+            ennemiAttaque = true;
             unit.setPointsDeVie(unit.getPointsDeVie() - 10);
         }
 
         if ((int) (Math.random() * 101) < 30) {
             System.out.println("Vous trouvez un réacteur nucléaire");
 
+            objetTrouve = true;
             unit.getInventaire().add(new ReacteurNucleaire());
         }
     }

@@ -20,12 +20,14 @@ public class Potagre extends Planete{
             System.out.println("Une onde thermique endommage votre vaisseau\n" +
                     "Votre vaisseau perd 80 points de vie");
 
+            ennemiAttaque = true;
             unit.setPointsDeVie(unit.getPointsDeVie() - 80);
         }
 
         if ((int) (Math.random() * 101) < 15) {
             System.out.println("Vous recouvrez un bras bionique");
 
+            objetTrouve = true;
             unit.getInventaire().add(new BrasBionique());
         }
     }

@@ -20,12 +20,14 @@ public class Carrokin extends Planete{
             System.out.println("Des fourmis géantes mangent des morceaux de votre vaisseau\n" +
                     "Votre vaisseau perd 15 points de vie");
 
+            ennemiAttaque = true;
             unit.setPointsDeVie(unit.getPointsDeVie() - 15);
         }
 
         if ((int) (Math.random() * 101) < 25) {
             System.out.println("Vous découvrez un bandage");
 
+            objetTrouve = true;
             unit.getInventaire().add(new Bandage());
         }
     }

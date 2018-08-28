@@ -5,6 +5,7 @@ import Vaisseau.*;
 public abstract class Planete {
     protected String nom;
     protected int carburantPourArriver;
+    protected boolean objetTrouve = false, ennemiAttaque = false;
 
     public abstract void explorer(Vaisseau vaisseau);
 
@@ -14,5 +15,13 @@ public abstract class Planete {
 
     public int getCarburantPourArriver() {
         return carburantPourArriver;
+    }
+
+    public boolean isObjetTrouve() {
+        return objetTrouve;
+    }
+
+    public boolean isEnnemiAttaque() {
+        return ennemiAttaque;
     }
 }

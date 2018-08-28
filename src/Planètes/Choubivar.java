@@ -20,12 +20,14 @@ public class Choubivar extends Planete {
             System.out.println("Vous heurtez une roche en atterrissant\n" +
                     "Votre vaisseau perd 10 points de vie");
 
+            ennemiAttaque = true;
             unit.setPointsDeVie(unit.getPointsDeVie() - 10);
         }
 
         if ((int) (Math.random() * 101) < 45) {
             System.out.println("Vous trouvez un bidon d'essence");
 
+            objetTrouve = true;
             unit.getInventaire().add(new BidonEssence());
         }
     }

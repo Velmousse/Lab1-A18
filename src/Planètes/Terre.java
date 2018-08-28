@@ -19,6 +19,7 @@ public class Terre extends Planete {
         if ((int) (Math.random() * 101) < 75) {
             System.out.println("Quelqu'un vous donne une tasse de thé");
 
+            objetTrouve = true;
             unit.getInventaire().add(new TasseDeThe());
         }
     }

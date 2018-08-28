@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Vaisseau.*;
 import Objets.*;
@@ -14,6 +15,7 @@ public class Main {
 
         System.out.println("Bienvenue dans Space Explorer.");
         while (menu(joueur));
+        sc.close();
     }
 
     public static boolean menu(Vaisseau unit) {
@@ -24,7 +26,7 @@ public class Main {
                 "   4- Revenir en arrière.\n" +
                 "Choix: ");
 
-        entree = sc.nextInt();
+        getEntree();
         System.out.println();
 
         switch (entree) {
@@ -83,7 +85,8 @@ public class Main {
             }
 
             System.out.print("Choix: ");
-            entree = sc.nextInt() - 1;
+            getEntree();
+            entree--;
             System.out.println();
             unit.getInventaire().get(entree).utiliser(unit);
             unit.getInventaire().remove(entree);
@@ -97,7 +100,16 @@ public class Main {
     }
 
     public static void retourArriere(Vaisseau unit) {
+        if (unit.getPlanetesVisitees().size() == 1)
+            System.out.println("Vous ne pouvez pas revenir en arrière");
+        else {
+            Planete temp = unit.getPlanetesVisitees().pop();
 
+            System.out.println("Dernier voyage annulé");
+            System.out.println("Retour sur " + unit.getPlanetesVisitees().peek().getNom());
+
+            unit.setQteCarburant(unit.getQteCarburant() + temp.getCarburantPourArriver());
+        }
     }
 
     public static boolean finPartie(Vaisseau unit) {
@@ -105,17 +117,29 @@ public class Main {
 
         ArrayList<Planete> planetesParcourues = new ArrayList<>();
 
-        while (!unit.getPlanetesVisitees().isEmpty())
+        while (!unit.getPlanetesVisitees().isEmpty()) {
             planetesParcourues.add(unit.getPlanetesVisitees().pop());
+        }
 
         System.out.println("Trajet parcouru: ");
 
-        for (int i = 0; i < planetesParcourues.size(); i++) {
+        for (int i = planetesParcourues.size() - 1; i >= 0; i--) {
             System.out.print(planetesParcourues.get(i).getNom());
-            if (!(i == planetesParcourues.size() - 1))
+            if (!(i == 0))
                 System.out.print(" => ");
         }
 
         return false;
+    }
+
+    public static void getEntree() {
+        try {
+            entree = sc.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.print("Réessayez: ");
+            sc = new Scanner(System.in);
+            getEntree();
+        }
     }
 }
