@@ -8,6 +8,7 @@ public class Choubivar extends Planete {
     public Choubivar() {
         nom = "Choubivar";
         carburantPourArriver = 150;
+        vieAPerdre = 10;
     }
 
     public void explorer(Vaisseau unit) {
@@ -18,10 +19,10 @@ public class Choubivar extends Planete {
 
         if ((int) (Math.random() * 101) < 15) {
             System.out.println("Vous heurtez une roche en atterrissant\n" +
-                    "Votre vaisseau perd 10 points de vie");
+                    "Votre vaisseau perd " + vieAPerdre + " points de vie");
 
             ennemiAttaque = true;
-            unit.setPointsDeVie(unit.getPointsDeVie() - 10);
+            unit.setPointsDeVie(unit.getPointsDeVie() - vieAPerdre);
         }
 
         if ((int) (Math.random() * 101) < 45) {

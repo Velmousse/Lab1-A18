@@ -8,6 +8,7 @@ public class Carrokin extends Planete{
     public Carrokin() {
         nom = "Carrokin";
         carburantPourArriver = 250;
+        vieAPerdre = 15;
     }
 
     public void explorer(Vaisseau unit) {
@@ -18,10 +19,10 @@ public class Carrokin extends Planete{
 
         if ((int) (Math.random() * 101) < 25) {
             System.out.println("Des fourmis géantes mangent des morceaux de votre vaisseau\n" +
-                    "Votre vaisseau perd 15 points de vie");
+                    "Votre vaisseau perd " + vieAPerdre + " points de vie");
 
             ennemiAttaque = true;
-            unit.setPointsDeVie(unit.getPointsDeVie() - 15);
+            unit.setPointsDeVie(unit.getPointsDeVie() - vieAPerdre);
         }
 
         if ((int) (Math.random() * 101) < 25) {

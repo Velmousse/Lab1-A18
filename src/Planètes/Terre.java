@@ -8,6 +8,7 @@ public class Terre extends Planete {
     public Terre() {
         nom = "Terre";
         carburantPourArriver = 100;
+        vieAPerdre = 0;
     }
 
     public void explorer(Vaisseau unit) {
