@@ -8,7 +8,6 @@ public class Potagre extends Planete{
     public Potagre() {
         nom = "Potagre";
         carburantPourArriver = 300;
-        vieAPerdre = 80;
     }
 
     public void explorer(Vaisseau unit) {
@@ -19,16 +18,14 @@ public class Potagre extends Planete{
 
         if ((int) (Math.random() * 101) < 2) {
             System.out.println("Une onde thermique endommage votre vaisseau\n" +
-                    "Votre vaisseau perd " + vieAPerdre + " points de vie");
+                    "Votre vaisseau perd 80 points de vie");
 
-            ennemiAttaque = true;
-            unit.setPointsDeVie(unit.getPointsDeVie() - vieAPerdre);
+            unit.setPointsDeVie(unit.getPointsDeVie() - 80);
         }
 
         if ((int) (Math.random() * 101) < 15) {
             System.out.println("Vous recouvrez un bras bionique");
 
-            objetTrouve = true;
             unit.getInventaire().add(new BrasBionique());
         }
     }

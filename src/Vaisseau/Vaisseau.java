@@ -12,6 +12,13 @@ public class Vaisseau {
     private List<Objet> inventaire = new ArrayList<>(5);
     private Stack<Planete> planetesVisitees = new Stack<>();
 
+    public Vaisseau(Vaisseau unit) {
+        planetesVisitees = unit.getPlanetesVisitees();
+
+        qteCarburant = unit.getQteCarburant();
+        pointsDeVie = unit.getPointsDeVie();
+    }
+
     public Vaisseau(int qteCarburant, int pointsDeVie) {
         this.qteCarburant = qteCarburant;
         this.pointsDeVie = pointsDeVie;
