@@ -13,21 +13,26 @@ public class Vaisseau {
     private Stack<Planete> planetesVisitees = new Stack<>();
 
     public Vaisseau(Vaisseau unit) {
-        planetesVisitees = unit.getPlanetesVisitees();
+        planetesVisitees = (Stack<Planete>) unit.getPlanetesVisitees().clone();
 
-        qteCarburant = unit.getQteCarburant();
-        pointsDeVie = unit.getPointsDeVie();
+        inventaire = new ArrayList<>(5);
+        for (Objet objet : unit.getInventaire())
+            inventaire.add(objet);
+
+
+        this.qteCarburant = unit.getQteCarburant();
+        this.pointsDeVie = unit.getPointsDeVie();
     }
 
     public Vaisseau(int qteCarburant, int pointsDeVie) {
         this.qteCarburant = qteCarburant;
         this.pointsDeVie = pointsDeVie;
 
-        planetesVisitees.add(new Terre());
+        this.planetesVisitees.add(new Terre());
     }
 
     public int getQteCarburant() {
-        return qteCarburant;
+        return this.qteCarburant;
     }
 
     public void setQteCarburant(int qteCarburant) {
@@ -35,7 +40,7 @@ public class Vaisseau {
     }
 
     public int getPointsDeVie() {
-        return pointsDeVie;
+        return this.pointsDeVie;
     }
 
     public void setPointsDeVie(int pointsDeVie) {
@@ -43,10 +48,10 @@ public class Vaisseau {
     }
 
     public List<Objet> getInventaire() {
-        return inventaire;
+        return this.inventaire;
     }
 
     public Stack<Planete> getPlanetesVisitees() {
-        return planetesVisitees;
+        return this.planetesVisitees;
     }
 }

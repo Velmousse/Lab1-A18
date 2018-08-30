@@ -56,19 +56,20 @@ public class Main {
 
     public static boolean explorer() {
         Planete rndPlanete = listePlanetes[(int) (Math.random()*5)];
+        Vaisseau temp = new Vaisseau(listeVaisseaux.peek());
 
-        while (listeVaisseaux.peek().getPlanetesVisitees().peek().getClass().equals(rndPlanete.getClass()))
+        while (temp.getPlanetesVisitees().peek().getClass().equals(rndPlanete.getClass()))
             rndPlanete = listePlanetes[(int) (Math.random()*5)];
 
-        if (listeVaisseaux.peek().getQteCarburant() - rndPlanete.getCarburantPourArriver() < 0) {
+        if (temp.getQteCarburant() - rndPlanete.getCarburantPourArriver() < 0) {
             System.out.println("Vous vous dirigez vers " + rndPlanete.getNom() + "\n" +
                     "Votre vaisseau manque d'essence");
             return finPartie();
         }
 
-        rndPlanete.explorer(listeVaisseaux.peek());
-        listeVaisseaux.peek().getPlanetesVisitees().add(rndPlanete);
-        listeVaisseaux.add(new Vaisseau(listeVaisseaux.peek()));
+        rndPlanete.explorer(temp);
+        temp.getPlanetesVisitees().add(rndPlanete);
+        listeVaisseaux.add(new Vaisseau(temp));
 
         if (listeVaisseaux.peek().getPointsDeVie() <= 0) {
             System.out.println("Vous n'avez plus de vie");
@@ -111,7 +112,7 @@ public class Main {
 
             System.out.println("Dernier voyage annulé");
             System.out.println("Retour sur " + listeVaisseaux.peek().getPlanetesVisitees().peek().getNom() +
-                    "\n\n [...]\n");
+                    "\n\n [...]");
         }
     }
 
