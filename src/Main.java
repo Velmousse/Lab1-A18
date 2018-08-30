@@ -86,7 +86,7 @@ public class Main {
 
             System.out.println("Quel objet voulez-vous utiliser?");
             for (Objet objet : listeVaisseaux.peek().getInventaire()) {
-                System.out.println(" " + i + "- " + objet.getNom());
+                System.out.println(" " + i++ + "- " + objet.getNom());
             }
 
             System.out.print("Choix: ");
